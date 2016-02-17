@@ -18,4 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lista_alunos"/>
+
+    <Button
+        android:id="@+id/novo_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Novo aluno"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp" />
 </LinearLayout>

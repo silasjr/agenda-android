@@ -1,5 +1,6 @@
 package br.com.silasjr.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,15 @@ public class FormularioActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FormularioActivity.this,"Botão salvar clicado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormularioActivity.this, "Botão salvar clicado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btnVoltar = (Button) findViewById(R.id.formulario_btn_voltar);
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FormularioActivity.this, ListaAlunosActivity.class));
             }
         });
 
