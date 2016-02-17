@@ -29,7 +29,8 @@ public class FormularioActivity extends AppCompatActivity {
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FormularioActivity.this, ListaAlunosActivity.class));
+                Intent intent = new Intent(FormularioActivity.this, ListaAlunosActivity.class);
+                startActivity(intent);
             }
         });
 
