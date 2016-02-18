@@ -10,7 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import br.com.silasjr.agenda.helper.FormularioHelper;
+import br.com.silasjr.agenda.model.Aluno;
+
 public class FormularioActivity extends AppCompatActivity {
+
+    private FormularioHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,8 @@ public class FormularioActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        helper = new FormularioHelper(this);
     }
 
     @Override
@@ -49,7 +56,10 @@ public class FormularioActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
-                Toast.makeText(FormularioActivity.this, "Botão salvar clicado", Toast.LENGTH_SHORT).show();
+
+                Aluno aluno = helper.getAluno();
+
+                Toast.makeText(FormularioActivity.this, "Aluno salvo "+aluno.getEmail(), Toast.LENGTH_SHORT).show();
                 backList();
                 break;
         }
