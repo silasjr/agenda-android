@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import br.com.silasjr.agenda.dao.AlunoDAO;
 import br.com.silasjr.agenda.helper.FormularioHelper;
 import br.com.silasjr.agenda.model.Aluno;
 
@@ -58,7 +59,9 @@ public class FormularioActivity extends AppCompatActivity {
             case R.id.menu_formulario_ok:
 
                 Aluno aluno = helper.getAluno();
-
+                AlunoDAO dao = new AlunoDAO(this);
+                dao.insert(aluno);
+                dao.close();
                 Toast.makeText(FormularioActivity.this, "Aluno salvo "+aluno.getEmail(), Toast.LENGTH_SHORT).show();
                 backList();
                 break;

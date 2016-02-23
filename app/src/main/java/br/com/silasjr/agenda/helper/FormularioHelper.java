@@ -23,6 +23,7 @@ public class FormularioHelper {
 
     public Aluno getAluno() {
         Aluno aluno = new Aluno();
+        aluno.setNome(txNome.getText().toString());
         aluno.setEmail(txEmail.getText().toString());
         aluno.setSite(txSite.getText().toString());
 
