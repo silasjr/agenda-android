@@ -14,20 +14,26 @@ public class FormularioHelper {
     private EditText txSite;
     private EditText txNome;
     private EditText txEmail;
+    private Aluno aluno;
 
     public FormularioHelper(FormularioActivity activity) {
         txNome = (EditText) activity.findViewById(R.id.formulario_nome);
         txEmail = (EditText) activity.findViewById(R.id.formulario_email);
         txSite = (EditText) activity.findViewById(R.id.formulario_site);
+        this.aluno = new Aluno();
     }
 
     public Aluno getAluno() {
-        Aluno aluno = new Aluno();
         aluno.setNome(txNome.getText().toString());
         aluno.setEmail(txEmail.getText().toString());
         aluno.setSite(txSite.getText().toString());
-
         return aluno;
     }
 
+    public void preencheFormulario(Aluno aluno) {
+        this.aluno = aluno;
+        this.txNome.setText(aluno.getNome());
+        this.txEmail.setText(aluno.getEmail());
+        this.txSite.setText(aluno.getSite());
+    }
 }

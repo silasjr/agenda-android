@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
         String sql = "INSERT INTO Alunos(nome, email, telefone, site, nota) VALUES(";
         SQLiteDatabase database = getWritableDatabase();
 
-        ContentValues dados = new ContentValues();
-        dados.put("nome", aluno.getNome());
-        dados.put("email", aluno.getEmail());
-        dados.put("telefone", aluno.getTelefone());
-        dados.put("nota", aluno.getNivelAluno());
+        ContentValues dados = getContentValues(aluno);
 
         // null -> para linhas em branco
         database.insert("Alunos", null, dados);
@@ -75,5 +72,23 @@ public class AlunoDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         db.delete("Alunos", "id = ?", new String[]{aluno.getId().toString()});
+    }
+
+    public void altera(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues dados = getContentValues(aluno);
+
+        db.update("Alunos",dados, "id = ?", new String[]{aluno.getId().toString()});
+    }
+
+    @NonNull
+    private ContentValues getContentValues(Aluno aluno) {
+        ContentValues dados = new ContentValues();
+        dados.put("nome", aluno.getNome());
+        dados.put("email", aluno.getEmail());
+        dados.put("telefone", aluno.getTelefone());
+        dados.put("nota", aluno.getNivelAluno());
+        return dados;
     }
 }

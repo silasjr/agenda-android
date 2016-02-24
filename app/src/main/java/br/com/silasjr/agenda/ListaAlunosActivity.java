@@ -29,6 +29,24 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
         listAlunos = (ListView) findViewById(R.id.lista_alunos);
 
+        listAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             *
+             * @param parent - a lista que clicamos
+             * @param view - o item que clicamos
+             * @param position
+             * @param id
+             */
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno aluno = (Aluno) listAlunos.getItemAtPosition(position);
+                Intent itentVaiProFormulario = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+                // para enviar dados para outra Activity
+                itentVaiProFormulario.putExtra("aluno", aluno);
+                startActivity(itentVaiProFormulario);
+            }
+        });
+
         Button btnNovo = (Button)findViewById(R.id.novo_aluno);
         btnNovo.setOnClickListener(new View.OnClickListener() {
             @Override

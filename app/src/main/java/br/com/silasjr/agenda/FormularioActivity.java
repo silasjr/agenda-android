@@ -1,5 +1,6 @@
 package br.com.silasjr.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +44,14 @@ public class FormularioActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+
         helper = new FormularioHelper(this);
+
+        if (aluno != null) {
+            helper.preencheFormulario(aluno);
+        }
     }
 
     @Override
@@ -58,9 +66,15 @@ public class FormularioActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
 
-                Aluno aluno = helper.getAluno();
                 AlunoDAO dao = new AlunoDAO(this);
-                dao.insert(aluno);
+                Aluno aluno = helper.getAluno();
+
+                if (aluno.getId() != null) {
+                    dao.altera(aluno);
+                } else {
+                    dao.insert(aluno);
+                }
+
                 dao.close();
                 Toast.makeText(FormularioActivity.this, "Aluno salvo "+aluno.getEmail(), Toast.LENGTH_SHORT).show();
                 backList();
